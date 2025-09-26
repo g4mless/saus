@@ -29,6 +29,10 @@ app.get('/:screen_name/status/:id', async (c) => {
       return c.text('No media found in tweet', 404)
     }
 
+    if (mediaUrl.includes('pbs.twimg.com/media/')) {
+      mediaUrl = `${mediaUrl}?name=small`;
+    }
+
     return c.html(html`
       <html>
         <head>
