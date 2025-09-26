@@ -44,6 +44,8 @@ app.get('/:screen_name/status/:id', async (c) => {
       }
     }
 
+    c.header('Cache-Control', 'public, max-age=3600, s-maxage=86400')
+
     return c.html(html`
       <html>
         <head>
