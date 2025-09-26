@@ -30,9 +30,20 @@ app.get('/:screen_name/status/:id', async (c) => {
     }
 
     if (mediaUrl.includes('pbs.twimg.com/media/')) {
-      mediaUrl = `${mediaUrl}?name=small`;
-    }
+      try {
+          const urlObj = new URL(mediaUrl);
+          urlObj.searchParams.delete('name');
+          urlObj.searchParams.delete('format');
+          urlObj.searchParams.delete('ext');
 
+          urlObj.searchParams.set('name', 'small');
+
+          mediaUrl = urlObj.toString();
+      } catch (e) {
+          console.error("Error optimizing media URL using URL API:", e);
+      }
+    }
+    
     return c.html(html`
       <html>
         <head>
