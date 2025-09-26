@@ -49,7 +49,9 @@ app.get('/:screen_name/status/:id', async (c) => {
     return c.html(html`
       <html>
         <head>
-          <meta property="og:title" content="Tweet by @${actual_screen_name}" />
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta property="og:title" content="@${actual_screen_name}" />
           <meta property="og:image" content="${mediaUrl}" />
           <meta name="twitter:card" content="summary_large_image">
           <meta name="twitter:creator" content="@${actual_screen_name}">
@@ -57,7 +59,7 @@ app.get('/:screen_name/status/:id', async (c) => {
           <meta name="twitter:image" content="${mediaUrl}">
         </head>
         <body>
-          <h1>Tweet by @${actual_screen_name}</h1>
+          <h1>@${actual_screen_name}</h1>
           <img src="${mediaUrl}" alt="Tweet media" />
         </body>
       </html>
