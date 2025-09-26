@@ -5,19 +5,18 @@ import fetch from 'node-fetch'
 const app = new Hono()
 
 app.get('/:screen_name/status/:id', async (c) => {
-  const screen_name_param = c.req.param('screen_name')
   const id = c.req.param('id')
   
   const apiUrl = `https://api.fxtwitter.com/status/${id}`
   try {
     const response = await fetch(apiUrl)
-    const data = await response.json()
+    const data: any = await response.json();
 
-    if (data.code !== 200) {
+    if (typeof data !== 'object' || data === null || data.code !== 200) {
       return c.text('Not found', 404)
     }
 
-    const actual_screen_name = data.tweet.author.screen_name
+    const actual_screen_name = data.tweet?.author?.screen_name
     let mediaUrl = ''
 
     if (data.tweet.media?.photos?.[0]?.url) {
