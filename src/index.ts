@@ -43,7 +43,7 @@ app.get('/:screen_name/status/:id', async (c) => {
           console.error("Error optimizing media URL using URL API:", e);
       }
     }
-    
+
     return c.html(html`
       <html>
         <head>
@@ -51,7 +51,7 @@ app.get('/:screen_name/status/:id', async (c) => {
           <meta property="og:image" content="${mediaUrl}" />
           <meta name="twitter:card" content="summary_large_image">
           <meta name="twitter:creator" content="@${actual_screen_name}">
-          <meta name="twitter:title" content="Tweet by @${actual_screen_name}">
+          <meta name="twitter:title" content="@${actual_screen_name}">
           <meta name="twitter:image" content="${mediaUrl}">
         </head>
         <body>
